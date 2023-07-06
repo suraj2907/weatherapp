@@ -31,10 +31,10 @@ const Weather = ({ data }) => {
         <p style={{
           fontSize:"30px"
         }}>{temp} &deg;C</p>
-        <p> {data.weather[0]?.main} <span style={{
+        <p> {data.weather[0]?.main} <img style={{
           width:"50px",
           height:"50px"
-        }}>{iconurl} </span> </p>
+        }} src= {iconurl} /> </p>
         <div className="flex row justify">
           <p>{temp_max} &deg;C
           </p>
