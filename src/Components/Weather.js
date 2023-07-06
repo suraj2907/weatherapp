@@ -10,7 +10,7 @@ const Weather = ({ data }) => {
 
   const makeurl = () => {
     if (data.weather && data.weather.length > 0) {
-      const iconcode = data.weather[0]?.icon;
+      const iconcode = data.weather?.[0]?.icon;
       return "http://openweathermap.org/img/w/" + iconcode + ".png";
     }
     return null; // Return a default value or handle the absence of weather data
@@ -39,17 +39,17 @@ const Weather = ({ data }) => {
         >
           {temp} &deg;C
         </p>
-        {/* <img
+        <img
             style={{
               width: "80px",
               height: "80px",
             }}
             src={makeurl()}
             
-          />{" "} */}
+          />{" "}
         <h5 style={{fontSize:"20px"}}>
           {" "}
-          {data.weather[0]?.main}{" "}
+          {data.weather?.[0]?.main}{" "}
          
         </h5>
         <div className="flex row justify">
