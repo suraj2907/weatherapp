@@ -39,14 +39,14 @@ const Weather = ({ data }) => {
         >
           {temp} &deg;C
         </p>
-        <img
+        {/* <img
             style={{
               width: "80px",
               height: "80px",
             }}
             src={makeurl()}
             
-          />{" "}
+          />{" "} */}
         <h5 style={{fontSize:"20px"}}>
           {" "}
           {data.weather[0]?.main}{" "}

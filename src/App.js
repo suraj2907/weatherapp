@@ -12,18 +12,12 @@ function App() {
  
 useEffect(()=>{
   try{
-    // var geolocation = require('geolocation')
-    // geolocation.getCurrentPosition(function (err, position) {
-    //   if (err) throw err
-    //   console.log(position)
-    // })
+   
 const lat = () => {
-  
   navigator.geolocation.getCurrentPosition(position => position.coords.latitude);
 };
 
 const long = () => {
- 
   navigator.geolocation.getCurrentPosition(position => position.coords.long);
 };
 
