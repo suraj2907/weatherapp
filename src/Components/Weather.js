@@ -4,13 +4,18 @@ import { Container, Card, CardBody } from "reactstrap";
 import moment from "moment/moment";
 
 const Weather = ({ data }) => {
+  const temp = ((Math.round(data.main?.temp) - 32) * 5) / 9;
+  const temp_max = ((Math.round(data.main?.temp_max) - 32) * 5) / 9;
+  const temp_min = ((Math.round(data.main?.temp_min) - 32) * 5) / 9;
 
-      const temp = ((Math.round(data.main?.temp))- 32) * 5/9;
-      const temp_max = ((Math.round(data.main?.temp_max))- 32) * 5/9;
-      const temp_min = ((Math.round(data.main?.temp_min))- 32) * 5/9;
+  const makeurl = () => {
+    if (data.weather && data.weather.length > 0) {
+      const iconcode = data.weather[0]?.icon;
+      return "http://openweathermap.org/img/w/" + iconcode + ".png";
+    }
+    return null; // Return a default value or handle the absence of weather data
+  };
 
-      var iconcode = data.weather[0]?.icon;
-      var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
   return (
     <Container
       fluid
@@ -19,61 +24,78 @@ const Weather = ({ data }) => {
         display: "flex",
         alignItems: "center",
         width: "50vw",
-        height: "60vh",
+        height: "max-content",
         margin: "auto",
         marginTop: "10rem",
-        
       }}
       className="col box-con back"
     >
       <div className="flex justify col">
-        <h2>{data.name}  </h2>
-        <p style={{
-          fontSize:"30px"
-        }}>{temp} &deg;C</p>
-        <p> {data.weather[0]?.main} <img style={{
-          width:"50px",
-          height:"50px"
-        }} src= {iconurl} /> </p>
+        <h2>{data.name} </h2>
+        <p
+          style={{
+            fontSize: "30px",
+          }}
+        >
+          {temp} &deg;C
+        </p>
+        <img
+            style={{
+              width: "80px",
+              height: "80px",
+            }}
+            src={makeurl()}
+            
+          />{" "}
+        <h5 style={{fontSize:"20px"}}>
+          {" "}
+          {data.weather[0]?.main}{" "}
+         
+        </h5>
         <div className="flex row justify">
-          <p>{temp_max} &deg;C
-          </p>
-          <p>{temp_min} &deg;C</p>
+          <p style={{ fontWeight:"600"
+          }}>Temp-max :- <span style={{fontWeight:"500"}}>{temp_max} &deg;C </span></p>
+          <p style={{ fontWeight:"600"
+          }}>Temp-min :- <span style={{fontWeight:"500"}}> {temp_min} &deg;C </span></p>
         </div>
       </div>
 
-<div className="flex justify box-bottom gap row"
-style={{
-borderTop:"2px solid black",
-width:"50vw",
-marginTop:"7rem",
-justifyContent:"space-evenly"
-
-}}
-
->
-      <div className="flex col">
-        <p>Humidity:  </p>
-        <p>{data.main?.humidity} % </p>
+      <div
+        className="flex justify box-bottom gap row"
+        style={{
+          borderTop: "2px solid black",
+          width: "50vw",
+          // marginTop: "7rem",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <div className="flex col">
+          <p>Humidity: </p>
+          <p>{data.main?.humidity} % </p>
         </div>
         <div className="flex  col">
-        <p>Pressure:  </p>
-        <p>{data.main?.pressure} </p>
+          <p>Pressure: </p>
+          <p>{data.main?.pressure} </p>
         </div>
         <div className="flex col">
-        <p>Sunrise:  </p>
-        <p>{new Date(data.sys?.sunrise * 1000).toLocaleTimeString('en-IN') } </p>
+          <p>Sunrise: </p>
+          <p>
+            {new Date(data.sys?.sunrise * 1000).toLocaleTimeString("en-IN")}{" "}
+          </p>
         </div>
         <div className="flex  col">
-        <p>Sunset:   </p>
-        <p>{new Date(data.sys?.sunset * 1000).toLocaleTimeString('en-IN')} </p>
+          <p>Sunset: </p>
+          <p>
+            {new Date(data.sys?.sunset * 1000).toLocaleTimeString("en-IN")}{" "}
+          </p>
         </div>
-        </div>
-     
+      </div>
     </Container>
   );
 };
 
 export default Weather;
-{/* <p> Sunrise:  {new Date(data.sys?.sunrise * 1000).toLocaleTimeString('en-IN')}</p> */}
-      //  <p> Sunset:  {new Date(data.sys?.sunset * 1000).toLocaleTimeString('en-IN')}</p>
+{
+  /* <p> Sunrise:  {new Date(data.sys?.sunrise * 1000).toLocaleTimeString('en-IN')}</p> */
+}
+//  <p> Sunset:  {new Date(data.sys?.sunset * 1000).toLocaleTimeString('en-IN')}</p>
