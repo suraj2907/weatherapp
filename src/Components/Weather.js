@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { Container, Card, CardBody } from "reactstrap";
+import { Container } from "reactstrap";
 import moment from "moment/moment";
 
 const Weather = ({ data }) => {
@@ -31,7 +31,10 @@ const Weather = ({ data }) => {
       className="col box-con back"
     >
       <div className="flex justify col">
+        <div className="flex row justify">
         <h2>{data.name} </h2>
+        <p style={{flexDirection:"row", display:"flex"}}>{moment().format('LL')}</p>
+        </div>
         <p
           style={{
             fontSize: "30px",
@@ -45,7 +48,7 @@ const Weather = ({ data }) => {
               height: "80px",
             }}
             src={makeurl()}
-            
+            alt="weather-icon"
           />{" "}
         <h5 style={{fontSize:"20px"}}>
           {" "}
@@ -95,7 +98,4 @@ const Weather = ({ data }) => {
 };
 
 export default Weather;
-{
-  /* <p> Sunrise:  {new Date(data.sys?.sunrise * 1000).toLocaleTimeString('en-IN')}</p> */
-}
-//  <p> Sunset:  {new Date(data.sys?.sunset * 1000).toLocaleTimeString('en-IN')}</p>
+
