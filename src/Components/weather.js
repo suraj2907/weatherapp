@@ -23,7 +23,7 @@ const Weather = ({ data }) => {
         border: "2px solid black",
         display: "flex",
         alignItems: "center",
-        width: "50vw",
+        width: "max-content",
         height: "max-content",
         margin: "auto",
         marginTop: "10rem",
@@ -80,7 +80,7 @@ const Weather = ({ data }) => {
         className="flex justify box-bottom gap row"
         style={{
           borderTop: "2px solid black",
-          width: "50vw",
+          width: "max-content",
           // marginTop: "7rem",
           justifyContent: "space-evenly",
         }}
