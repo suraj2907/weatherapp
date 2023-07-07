@@ -8,6 +8,9 @@ body{
 .box-con{
   box-shadow: 4px 4px 5px rgb(22, 41, 72);
 }
+.box-bottom {
+  box-shadow: 2px 2px 2px #43a20900;
+}
 .box-bottom{
   box-shadow: 4px 4px 5px rgb(22, 41, 72);
 }

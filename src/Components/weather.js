@@ -77,7 +77,7 @@ const Weather = ({ data }) => {
       </div>
 
       <div
-        className="flex justify box-bottom gap row"
+        className="flex justify box-bottom gap row box-bottom"
         style={{
           borderTop: "2px solid black",
           width: "max-content",
@@ -90,8 +90,8 @@ const Weather = ({ data }) => {
           <p>{data.main?.humidity} % </p>
         </div>
         <div className="flex  col">
-          <p>Pressure: </p>
-          <p>{data.main?.pressure} </p>
+          <p>Wind speed: </p>
+          <p>{data.wind?.speed} m/s</p>
         </div>
         <div className="flex col">
           <p>Sunrise: </p>
