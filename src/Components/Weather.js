@@ -4,9 +4,9 @@ import { Container } from "reactstrap";
 import moment from "moment/moment";
 
 const Weather = ({ data }) => {
-  const temp = ((Math.round(data.main?.temp) - 32) * 5) / 9;
-  const temp_max = ((Math.round(data.main?.temp_max) - 32) * 5) / 9;
-  const temp_min = ((Math.round(data.main?.temp_min) - 32) * 5) / 9;
+  // const temp = (Math.round(data.main?.temp) - 32) * 5/9;
+  // const temp_max = (Math.round(data.main?.temp_max) - 32) * 5/9;
+  // const temp_min = (Math.round(data.main?.temp_min) - 32) * 5/9;
 
   const makeurl = () => {
     if (data.weather && data.weather.length > 0) {
@@ -32,34 +32,47 @@ const Weather = ({ data }) => {
     >
       <div className="flex justify col">
         <div className="flex row justify">
-        <h2>{data.name} </h2>
-        <p style={{flexDirection:"row", display:"flex"}}>{moment().format('LL')}</p>
+          <h2>{data.name} </h2>
+          <p style={{ flexDirection: "row", display: "flex" }}>
+            {moment().format("LL")}
+          </p>
         </div>
         <p
           style={{
             fontSize: "30px",
           }}
         >
-          {temp} &deg;C
+          {data.main?.temp} &deg;C
         </p>
         <img
+          style={{
+            width: "80px",
+            height: "80px",
+          }}
+          src={makeurl()}
+          alt="weather-icon"
+        />{" "}
+        <h5 style={{ fontSize: "20px" }}> {data.weather?.[0]?.main} </h5>
+        <div className="flex row " style={{ gap: "30px" }}>
+          <p
             style={{
-              width: "80px",
-              height: "80px",
+              fontWeight: "600",
+              justifyContent: "flex-start",
+              display: "flex",
             }}
-            src={makeurl()}
-            alt="weather-icon"
-          />{" "}
-        <h5 style={{fontSize:"20px"}}>
-          {" "}
-          {data.weather?.[0]?.main}{" "}
-         
-        </h5>
-        <div className="flex row justify">
-          <p style={{ fontWeight:"600"
-          }}>Temp-max :- <span style={{fontWeight:"500"}}>{temp_max} &deg;C </span></p>
-          <p style={{ fontWeight:"600"
-          }}>Temp-min :- <span style={{fontWeight:"500"}}> {temp_min} &deg;C </span></p>
+          >
+            Temp-max :-{" "}
+            <span style={{ fontWeight: "500" }}>
+              {data.main?.temp_max} &deg;C{" "}
+            </span>
+          </p>
+          <p style={{ fontWeight: "600" }}>
+            Temp-min :-{" "}
+            <span style={{ fontWeight: "500" }}>
+              {" "}
+              {data.main?.temp_min} &deg;C{" "}
+            </span>
+          </p>
         </div>
       </div>
 
@@ -98,4 +111,3 @@ const Weather = ({ data }) => {
 };
 
 export default Weather;
-

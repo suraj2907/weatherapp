@@ -1,4 +1,3 @@
-
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -8,38 +7,32 @@ import Weather from './Components/weather';
 
 function App() {
   const [data, setData] = useState([]);
+  const[lat,setLat]= useState(null);
+  const [lon,setLon] = useState(null);
 
- 
 useEffect(()=>{
-  try{
-   
-const lat = () => {
-  navigator.geolocation.getCurrentPosition(position => position.coords.latitude);
-};
+  try{   
+    navigator.geolocation.getCurrentPosition(function(position) {
+      setLat(position.coords.latitude);
+      setLon(position.coords.longitude);
+    });
 
-const long = () => {
-  navigator.geolocation.getCurrentPosition(position => position.coords.long);
-};
+    console.log("Latitude is:", lat)
+    console.log("Longitude is:", lon)
 
-console.log(lat);
-console.log( long);
-
-
-      const fetchData =async () => {
-        const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=52&lon=50&appid=a9959ac92af0f0dad188e5f2f2b431a4`);
+      const fetchData =async (lat , lon) => {
+        const {data} = await axios.get(`https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${lon}&units=metric&appid=a9959ac92af0f0dad188e5f2f2b431a4`);
         console.log(data);
         setData(data);
+       
       }
-      fetchData();
+      fetchData(lat,lon);
     }
     catch(err) {
-           console.log("Error" , err);
+    console.log("Error" , err);
     }
-  },[]);
-
-
-  
-   
+    
+  },[lat,lon]);
 
     return (
       <div>
