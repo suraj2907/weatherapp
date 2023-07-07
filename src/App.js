@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Weather from './Components/weatherContents';
+import Weather from './Components/weather';
 
 // const API_KEY = 'ce2c5a45a2bb4441912103052230507';
 
